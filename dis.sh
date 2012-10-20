@@ -36,10 +36,7 @@ verify() {
 
 post() {
   local text="$1"
-  local timestamp="$(date)"
-  local user="$(git config user.name) <$(git config user.email)>"
-  local transmission="$(echo -en "$timestamp, $user\n\n$text")"
-  git commit --allow-empty -m"$transmission"
+  git commit --allow-empty -m"$text"
   return $?
 }
 
