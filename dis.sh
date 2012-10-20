@@ -4,6 +4,7 @@ verify() {
   local text="$1"
   [ -z "$text" ] && echo "there's an easier way to be silent" && return 1
   [ $(echo -n "$text" |wc -c) -gt 140 ] && echo "too long a post" && return 1
+  return 0
 }
 
 post() {
