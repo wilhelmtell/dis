@@ -2,7 +2,8 @@
 
 verify() {
   local text="$1"
-  [ $(echo -n "$text" |wc -c) -gt 140 ]
+  [ -z "$text" ] && exit 1
+  [ $(echo -n "$text" |wc -c) -gt 140 ] && exit 1
 }
 
 post() {
