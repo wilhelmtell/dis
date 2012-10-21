@@ -15,6 +15,6 @@ help() {
 }
 
 sup() {
-  git log --pretty="%Cblue%an%Creset, %C(white)%ar%Creset%n%n%w(50,1,1)%B"
+  git log --pretty="%Cblue%an%Creset, %C(white)%ar%Creset%n%w(50,1,1)%B"
   return $?
 }
