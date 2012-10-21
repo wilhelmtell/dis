@@ -39,7 +39,7 @@ fetch() {
   local users="$@"
   [ -z "$users" ] && git fetch --quiet --all
   for user in $users; do
-    git fetch --quiet "$user"
+    git fetch --force --quiet "$user"
   done
 }
 
