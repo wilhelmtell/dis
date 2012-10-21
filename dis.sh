@@ -9,9 +9,9 @@ help() {
   echo
   echo "available commands:"
   echo
-  echo "help                 display this help text"
+  echo "help"
   echo "init <name> [about]  initialize a dis account"
-  echo "post <text>          post text"
+  echo "post <text>"
   echo "publish [text]       publish posted texts"
   echo "wut                  read text snippets"
   return 0
