@@ -1,5 +1,8 @@
 source $SCRIPT_DIRECTORY/error.sh
 
+# the function arguments for each of the verify functions below takes as
+# arguments the "$@" that came from the commandline
+
 verify_text() {
   local text="$2"
   if [ $(echo -n "$text" |wc -c) -gt 140 ]; then
