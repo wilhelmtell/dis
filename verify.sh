@@ -82,7 +82,7 @@ verify_command() {
   elif [ $cmd = "init" ]; then verify_init_command "$@"
   elif [ $cmd = "fetch" ]; then verify_fetch_command "$@"
   elif [ $cmd = "publish" ]; then verify_publish_command "$@"
-  else error "unrecognized command"
+  else error "unrecognized command, \"$cmd\""
   fi
   return $?
 }
