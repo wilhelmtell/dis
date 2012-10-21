@@ -29,7 +29,7 @@ verify_post_command() {
 verify_help_command() {
   local extra_argument="$2"
   if [ -n "$2" ]; then
-    error "unrecognized extra argument"
+    error "help command takes no other arguments"
   fi
   return $?
 }
