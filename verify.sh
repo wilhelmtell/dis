@@ -3,7 +3,7 @@ source $SCRIPT_DIRECTORY/error.sh
 # the function arguments for each of the verify functions below takes as
 # arguments the "$@" that came from the commandline
 
-verify_text_length() {
+check_text_length() {
   local text="$1"
   [ $(echo -n "$text" |wc -c) -le 140 ]
   return $?
@@ -11,7 +11,7 @@ verify_text_length() {
 
 verify_post_text() {
   local text="$2"
-  if ! verify_text_length "$text"; then
+  if ! check_text_length "$text"; then
     error "too long a post text"
   fi
   return $?
@@ -48,7 +48,7 @@ verify_init_command() {
   local about="$3"
   if [ -z "$name" ]; then
     error "no name specified"
-  elif ! verify_text_length "$about"; then
+  elif ! check_text_length "$about"; then
     error "too long an about text"
   fi
   return $?
