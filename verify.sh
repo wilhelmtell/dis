@@ -1,34 +1,36 @@
+source $(dirname $0)/error.sh
+
 verify_command() {
   local cmd="$1"
   if [ -z "$cmd" ]; then
-    echo "empty command" && return 1
+    error "empty command"
   elif [ $cmd != "post" ]; then
-    echo "unrecognized command" && return 1
+    error "unrecognized command"
   fi
-  return 0
+  return $?
 }
 
 verify_text() {
   local text="$1"
   if [ -z "$text" ]; then
-    echo "there's an easier way to be silent" && return 1
+    error "there's an easier way to be silent"
   elif [ $(echo -n "$text" |wc -c) -gt 140 ]; then
-    echo "too long a post" && return 1
+    error "too long a post"
   fi
-  return 0
+  return $?
 }
 
 verify_argument_count() {
   if [ $# -ne 2 ]; then
-    echo "command or text not given" && return 1
+    error "command or text not given"
   fi
-  return 0
+  return $?
 }
 
 verify() {
-  verify_argument_count "$@" || return 1
-  verify_command "$1" || return 1
-  verify_text "$2" || return 1
-  return 0
+  verify_argument_count "$@" &&
+    verify_command "$1" &&
+    verify_text "$2" &&
+  return $?
 }
 
