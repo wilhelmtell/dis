@@ -11,4 +11,5 @@ help() {
   echo
   echo "help         display this help text"
   echo "post <text>  post text"
+  return 0
 }
