@@ -65,7 +65,7 @@ verify_fetch_command() {
   shift
   local users="$@"
   for user in $users; do
-    git remote |grep "$user" >/dev/null || {
+    git remote |grep "^$user$" >/dev/null || {
       error "unknown user $user. did you forget to track it first?"
       return 1
     }
