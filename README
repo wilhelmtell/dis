@@ -1,0 +1,6 @@
+ dis - distributed twitter substitute hackery
+
+ $ dis init arthur "Traversing the galaxy, got a towel."
+ $ dis post "House demolished. But hey, peanut butter sandwich for breakfast!"
+ $ dis post "I'm not sure about this. Not at all."
+ $ dis publish
