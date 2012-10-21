@@ -12,6 +12,7 @@ help() {
   echo "help                 display this help text"
   echo "init <name> [about]  initialize a dis account"
   echo "post <text>          post text"
+  echo "publish [text]       publish posted texts"
   echo "sup                  read text snippets"
   return 0
 }
@@ -30,5 +31,14 @@ init() {
     cd "$name" &&
     git add ABOUT &&
     git commit --quiet --message "$user joined dis"
+  return $?
+}
+
+publish() {
+  local text="$1"
+  if [ -n "$text" ]; then
+    post "$text"
+  fi &&
+    git push --quiet
   return $?
 }

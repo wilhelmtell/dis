@@ -54,6 +54,14 @@ verify_init_command() {
   return $?
 }
 
+verify_publish_command() {
+  local text="$2"
+  if [ -n "$text" ]; then
+    verify_post_command "$@"
+  fi
+  return $?
+}
+
 verify_command() {
   local cmd="$1"
   if [ -z "$cmd" ]; then
@@ -66,6 +74,8 @@ verify_command() {
     verify_sup_command "$@"
   elif [ $cmd = "init" ]; then
     verify_init_command "$@"
+  elif [ $cmd = "publish" ]; then
+    verify_publish_command "$@"
   else
     error "unrecognized command"
   fi
