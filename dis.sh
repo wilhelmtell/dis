@@ -19,7 +19,7 @@ help() {
   echo "publish [text]       post text if given; then publish all texts"
   echo "wut                  read text snippets"
   echo "fetch [user [...]]   fetch new text snippets"
-  echo "track <user>:<at>    track a user"
+  echo "track <user> <at>    track a user"
   return 0
 }
 
