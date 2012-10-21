@@ -1,9 +1,27 @@
 source $SCRIPT_DIRECTORY/error.sh
 
+verify_text() {
+  local text="$2"
+  if [ $(echo -n "$text" |wc -c) -gt 140 ]; then
+    error "too long a post text"
+  fi
+  return $?
+}
+
 verify_post_command() {
   local text="$2"
-  if [ -z "$text" ]; then
+  if [ -n "$text" ]; then
+    verify_text "$@"
+  else
     error "no text specified"
+  fi
+  return $?
+}
+
+verify_help_command() {
+  local extra_argument="$2"
+  if [ -n "$2" ]; then
+    error "unrecognized extra argument"
   fi
   return $?
 }
@@ -14,24 +32,15 @@ verify_command() {
     error "no command given"
   elif [ $cmd = "post" ]; then
     verify_post_command "$@"
+  elif [ $cmd = "help" ]; then
+    verify_help_command "$@"
   else
     error "unrecognized command"
   fi
   return $?
 }
 
-verify_text() {
-  local text="$2"
-  if [ -z "$text" ]; then
-    error "there's an easier way to be silent"
-  elif [ $(echo -n "$text" |wc -c) -gt 140 ]; then
-    error "too long a post"
-  fi
-  return $?
-}
-
 verify() {
-  verify_command "$@" &&
-    verify_text "$@"
+  verify_command "$@"
   return $?
 }
