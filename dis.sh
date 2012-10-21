@@ -48,6 +48,7 @@ length=\$((\$(sed '/^#/ d' <"\$1" |wc -c) - 1))
 }
 EOF
   chmod 755 .git/hooks/commit-msg
+  return $?
 }
 
 init() {
