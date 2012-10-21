@@ -26,7 +26,7 @@ wut() {
   return $?
 }
 
-init() {
+setup_repository() {
   local name="$1"
   local user="$(git config user.name)"
   local about="$2"
@@ -36,6 +36,23 @@ init() {
     git add ABOUT &&
     git commit --quiet --message "$user joined dis"
   return $?
+}
+
+setup_commit_handler() {
+  local name="$1"
+  cat <<EOF>.git/hooks/commit-msg
+length=\$((\$(sed '/^#/ d' <"\$1" |wc -c) - 1))
+[ \$length -le 140 ] || {
+  echo "\$length characters; too long a post text." >&2
+  exit 1
+}
+EOF
+  chmod 755 .git/hooks/commit-msg
+}
+
+init() {
+  setup_repository "$@" &&
+    setup_commit_handler "$@"
 }
 
 publish() {
