@@ -1,5 +1,3 @@
-#!/bin/bash
-
 verify_command() {
   local cmd="$1"
   if [ -z "$cmd" ]; then
@@ -39,6 +37,3 @@ post() {
   git commit --allow-empty -m"$text"
   return $?
 }
-
-verify "$@" || exit 1
-$1 "$2"
