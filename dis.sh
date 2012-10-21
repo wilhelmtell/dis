@@ -11,6 +11,7 @@ help() {
   echo
   echo "help         display this help text"
   echo "post <text>  post text"
+  echo "sup          read text snippets"
   return 0
 }
 
