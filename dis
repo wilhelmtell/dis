@@ -1,5 +1,6 @@
 #!/bin/bash
 
+source $(dirname $0)/verify.sh
 source $(dirname $0)/dis.sh
 
 verify "$@" || exit 1
