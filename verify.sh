@@ -73,6 +73,17 @@ verify_fetch_command() {
   return $?
 }
 
+verify_track_command() {
+  local user="$2"
+  local server="$3"
+  if [ -z "$user" ]; then
+    error "no user specified to track"
+  elif [ -z "$server" ]; then
+    error "no server specified to track"
+  fi
+  return $?
+}
+
 verify_command() {
   local cmd="$1"
   if [ -z "$cmd" ]; then error "no command given"
@@ -81,6 +92,7 @@ verify_command() {
   elif [ $cmd = "wut" ]; then verify_wut_command "$@"
   elif [ $cmd = "init" ]; then verify_init_command "$@"
   elif [ $cmd = "fetch" ]; then verify_fetch_command "$@"
+  elif [ $cmd = "track" ]; then verify_track_command "$@"
   elif [ $cmd = "publish" ]; then verify_publish_command "$@"
   else error "unrecognized command, \"$cmd\""
   fi

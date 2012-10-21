@@ -19,11 +19,19 @@ help() {
   echo "publish [text]       post text if given; then publish all texts"
   echo "wut                  read text snippets"
   echo "fetch [user [...]]   fetch new text snippets"
+  echo "track <user>:<at>    track a user"
   return 0
 }
 
+track() {
+  local user="$1"
+  local server="$2"
+  git remote add "$user" "$server"
+}
+
 wut() {
-  git log --pretty="%Cblue%an%Creset, %C(white)%ar%Creset%n%w(50,1,1)%B"
+  local format="%Cblue%an%Creset, %C(white)%ar%Creset%n%w(50,1,1)%B"
+  git log --pretty="$format" HEAD --remotes
   return $?
 }
 
