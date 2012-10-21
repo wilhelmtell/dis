@@ -29,6 +29,14 @@ verify_help_command() {
   return $?
 }
 
+verify_sup_command() {
+  local extra_argument="$2"
+  if [ -n "$2" ]; then
+    error "unrecognized extra argument"
+  fi
+  return $?
+}
+
 verify_command() {
   local cmd="$1"
   if [ -z "$cmd" ]; then
@@ -37,6 +45,8 @@ verify_command() {
     verify_post_command "$@"
   elif [ $cmd = "help" ]; then
     verify_help_command "$@"
+  elif [ $cmd = "sup" ]; then
+    verify_sup_command "$@"
   else
     error "unrecognized command"
   fi

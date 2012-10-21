@@ -13,3 +13,8 @@ help() {
   echo "post <text>  post text"
   return 0
 }
+
+sup() {
+  git log --pretty="%Cblue%an%Creset, %C(white)%ar%Creset%n%n%w(50,1,1)%B"
+  return $?
+}
