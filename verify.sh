@@ -84,6 +84,19 @@ verify_track_command() {
   return $?
 }
 
+verify_about_command() {
+  local user="$2"
+  if [ -z "$user" ]; then
+    error "no user given to show biography for"
+  else
+    git remote |grep "^$user$" >/dev/null || {
+      error "unknown user $user. did you forget to track it first?"
+      return 1
+    }
+  fi
+  return $?
+}
+
 verify_command() {
   local cmd="$1"
   if [ -z "$cmd" ]; then error "no command given"
@@ -93,6 +106,7 @@ verify_command() {
   elif [ $cmd = "init" ]; then verify_init_command "$@"
   elif [ $cmd = "fetch" ]; then verify_fetch_command "$@"
   elif [ $cmd = "track" ]; then verify_track_command "$@"
+  elif [ $cmd = "about" ]; then verify_about_command "$@"
   elif [ $cmd = "publish" ]; then verify_publish_command "$@"
   else error "unrecognized command, \"$cmd\""
   fi

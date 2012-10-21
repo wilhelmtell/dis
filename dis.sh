@@ -20,7 +20,13 @@ help() {
   echo "wut                  read text snippets"
   echo "fetch [user [...]]   fetch new text snippets"
   echo "track <user> <at>    track a user"
+  echo "about <user>         show biography of a user"
   return 0
+}
+
+about() {
+  local user="$1"
+  git --no-pager show "$user"/master:ABOUT
 }
 
 track() {
