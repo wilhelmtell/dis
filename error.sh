@@ -1,4 +1,4 @@
 error() {
-  echo "$1" >&2
+  echo "error: $1" >&2
   return 1
 }
