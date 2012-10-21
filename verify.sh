@@ -65,20 +65,13 @@ verify_publish_command() {
 
 verify_command() {
   local cmd="$1"
-  if [ -z "$cmd" ]; then
-    error "no command given"
-  elif [ $cmd = "post" ]; then
-    verify_post_command "$@"
-  elif [ $cmd = "help" ]; then
-    verify_help_command "$@"
-  elif [ $cmd = "wut" ]; then
-    verify_wut_command "$@"
-  elif [ $cmd = "init" ]; then
-    verify_init_command "$@"
-  elif [ $cmd = "publish" ]; then
-    verify_publish_command "$@"
-  else
-    error "unrecognized command"
+  if [ -z "$cmd" ]; then error "no command given"
+  elif [ $cmd = "post" ]; then verify_post_command "$@"
+  elif [ $cmd = "help" ]; then verify_help_command "$@"
+  elif [ $cmd = "wut" ]; then verify_wut_command "$@"
+  elif [ $cmd = "init" ]; then verify_init_command "$@"
+  elif [ $cmd = "publish" ]; then verify_publish_command "$@"
+  else error "unrecognized command"
   fi
   return $?
 }
