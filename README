@@ -13,3 +13,13 @@ dis is (as of yet?) a commandline utility. Here's an example session:
 But of course,
 
  $ dis help
+
+
+ DEPENDENCIES
+
+dis depends on git, bash and the GNU coreutils. Here's my setup, on which
+things seem to work:
+
+ - Git 1.7.12.4
+ - GNU coreutils 8.19
+ - Bash 4.2.37
