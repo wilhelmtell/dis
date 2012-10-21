@@ -37,7 +37,7 @@ verify_help_command() {
 verify_wut_command() {
   local extra_argument="$2"
   if [ -n "$2" ]; then
-    error "unrecognized extra argument"
+    error "wut command takes no other agruments"
   fi
   return $?
 }
