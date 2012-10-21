@@ -1,6 +1,15 @@
  dis - distributed twitter substitute hackery
 
+dis is (as of yet?) a commandline utility. Here's an example session:
+
  $ dis init arthur "Traversing the galaxy, got a towel."
  $ dis post "House demolished. But hey, peanut butter sandwich for breakfast!"
  $ dis post "I'm not sure about this. Not at all."
  $ dis publish
+ $ dis track dishes https://github.com/wilhelmtell/dishes.git
+ $ dis fetch dishes
+ $ dis wut
+
+But of course,
+
+ $ dis help
