@@ -72,7 +72,16 @@ verify_command() {
   return $?
 }
 
+verify_user() {
+  local user="$(git config user.name)"
+  if [ -z "$user" ]; then
+    error "what's your name? try \"git config --global user.name 'Your Name'\""
+  fi
+  return $?
+}
+
 verify() {
-  verify_command "$@"
+  verify_user "$@" &&
+    verify_command "$@"
   return $?
 }
