@@ -3,18 +3,25 @@ source $SCRIPT_DIRECTORY/error.sh
 # the function arguments for each of the verify functions below takes as
 # arguments the "$@" that came from the commandline
 
-check_text_length() {
+length() {
   local text="$1"
-  [ $(echo -n "$text" |wc -c) -le 140 ]
+  echo -n "$text" |wc -c
+  return 0
+}
+
+check_text_length() {
+  local text_length="$1"
+  [ $text_length -le 140 ]
   return $?
 }
 
 verify_post_command() {
   local text="$2"
-  if [ -z "$text" ]; then
+  local text_length=$(length "$text")
+  if [ $text_length -eq 0 ]; then
     error "no text specified"
-  elif ! check_text_length "$text"; then
-    error "too long a post text"
+  elif ! check_text_length $text_length; then
+    error "$text_length characters; too long a post text"
   fi
   return $?
 }
@@ -38,18 +45,20 @@ verify_wut_command() {
 verify_init_command() {
   local name="$2"
   local about="$3"
+  local about_length=$(length "$about")
   if [ -z "$name" ]; then
     error "no name specified"
-  elif ! check_text_length "$about"; then
-    error "too long an about text"
+  elif ! check_text_length "$about_length"; then
+    error "$about_length characters; too long an about text"
   fi
   return $?
 }
 
 verify_publish_command() {
   local text="$2"
-  if ! check_text_length "$text"; then
-    error "too long a post text to publish"
+  local text_length=$(length "$text")
+  if ! check_text_length "$text_length"; then
+    error "$text_length characters; too long a post text to publish"
   fi
   return $?
 }
