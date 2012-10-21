@@ -9,20 +9,12 @@ check_text_length() {
   return $?
 }
 
-verify_post_text() {
-  local text="$2"
-  if ! check_text_length "$text"; then
-    error "too long a post text"
-  fi
-  return $?
-}
-
 verify_post_command() {
   local text="$2"
-  if [ -n "$text" ]; then
-    verify_post_text "$@"
-  else
+  if [ -z "$text" ]; then
     error "no text specified"
+  elif ! check_text_length "$text"; then
+    error "too long a post text"
   fi
   return $?
 }
@@ -56,8 +48,8 @@ verify_init_command() {
 
 verify_publish_command() {
   local text="$2"
-  if [ -n "$text" ]; then
-    verify_post_command "$@"
+  if ! check_text_length "$text"; then
+    error "too long a post text to publish"
   fi
   return $?
 }
