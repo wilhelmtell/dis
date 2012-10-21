@@ -30,7 +30,7 @@ track() {
 }
 
 wut() {
-  local format="%Cblue%an%Creset, %C(white)%ar%Creset%n%w(50,1,1)%B"
+  local format="%Cblue%ae%Creset, %C(white)%ar%Creset%n%w(50,1,1)%B"
   git log --pretty="$format" HEAD --remotes
   return $?
 }
