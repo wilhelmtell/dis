@@ -12,7 +12,7 @@ help() {
   echo "help"
   echo "init <name> [about]  initialize a dis account"
   echo "post <text>"
-  echo "publish [text]       publish posted texts"
+  echo "publish [text]       post text if given; then publish all texts"
   echo "wut                  read text snippets"
   return 0
 }
