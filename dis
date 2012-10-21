@@ -1,7 +1,7 @@
 #!/bin/bash
-
-source $(dirname $0)/verify.sh
-source $(dirname $0)/dis.sh
+export SCRIPT_DIRECTORY="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source $SCRIPT_DIRECTORY/verify.sh
+source $SCRIPT_DIRECTORY/dis.sh
 
 verify "$@" || exit 1
 $1 "$2"

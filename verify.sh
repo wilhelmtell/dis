@@ -1,4 +1,4 @@
-source $(dirname $0)/error.sh
+source $SCRIPT_DIRECTORY/error.sh
 
 verify_command() {
   local cmd="$1"
