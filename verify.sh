@@ -3,9 +3,15 @@ source $SCRIPT_DIRECTORY/error.sh
 # the function arguments for each of the verify functions below takes as
 # arguments the "$@" that came from the commandline
 
-verify_text() {
+verify_text_length() {
+  local text="$1"
+  [ $(echo -n "$text" |wc -c) -le 140 ]
+  return $?
+}
+
+verify_post_text() {
   local text="$2"
-  if [ $(echo -n "$text" |wc -c) -gt 140 ]; then
+  if ! verify_text_length "$text"; then
     error "too long a post text"
   fi
   return $?
@@ -14,7 +20,7 @@ verify_text() {
 verify_post_command() {
   local text="$2"
   if [ -n "$text" ]; then
-    verify_text "$@"
+    verify_post_text "$@"
   else
     error "no text specified"
   fi
@@ -37,6 +43,17 @@ verify_sup_command() {
   return $?
 }
 
+verify_init_command() {
+  local name="$2"
+  local about="$3"
+  if [ -z "$name" ]; then
+    error "no name specified"
+  elif ! verify_text_length "$about"; then
+    error "too long an about text"
+  fi
+  return $?
+}
+
 verify_command() {
   local cmd="$1"
   if [ -z "$cmd" ]; then
@@ -47,6 +64,8 @@ verify_command() {
     verify_help_command "$@"
   elif [ $cmd = "sup" ]; then
     verify_sup_command "$@"
+  elif [ $cmd = "init" ]; then
+    verify_init_command "$@"
   else
     error "unrecognized command"
   fi
