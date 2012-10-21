@@ -1,5 +1,5 @@
 post() {
   local text="$1"
-  git commit --allow-empty --quiet -m"$text"
+  git commit --allow-empty --quiet --message "$text"
   return $?
 }
