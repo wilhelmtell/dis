@@ -1,6 +1,10 @@
 post() {
   local text="$1"
-  git commit --allow-empty --quiet --message "$text"
+  if [ -n "$text" ]; then
+    git commit --allow-empty --quiet --message "$text"
+  else
+    git commit --allow-empty --quiet --edit
+  fi
   return $?
 }
 
@@ -11,7 +15,7 @@ help() {
   echo
   echo "help"
   echo "init <name> [about]  initialize a dis account"
-  echo "post <text>"
+  echo "post [text]"
   echo "publish [text]       post text if given; then publish all texts"
   echo "wut                  read text snippets"
   return 0

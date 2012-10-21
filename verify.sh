@@ -18,9 +18,7 @@ check_text_length() {
 verify_post_command() {
   local text="$2"
   local text_length=$(length "$text")
-  if [ $text_length -eq 0 ]; then
-    error "no text specified"
-  elif ! check_text_length $text_length; then
+  if ! check_text_length $text_length; then
     error "$text_length characters; too long a post text"
   fi
   return $?
