@@ -61,6 +61,18 @@ verify_publish_command() {
   return $?
 }
 
+verify_fetch_command() {
+  shift
+  local users="$@"
+  for user in $users; do
+    git remote |grep "$user" >/dev/null || {
+      error "unknown user $user. did you forget to track it first?"
+      return 1
+    }
+  done
+  return $?
+}
+
 verify_command() {
   local cmd="$1"
   if [ -z "$cmd" ]; then error "no command given"
@@ -68,6 +80,7 @@ verify_command() {
   elif [ $cmd = "help" ]; then verify_help_command "$@"
   elif [ $cmd = "wut" ]; then verify_wut_command "$@"
   elif [ $cmd = "init" ]; then verify_init_command "$@"
+  elif [ $cmd = "fetch" ]; then verify_fetch_command "$@"
   elif [ $cmd = "publish" ]; then verify_publish_command "$@"
   else error "unrecognized command"
   fi

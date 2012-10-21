@@ -18,12 +18,21 @@ help() {
   echo "post [text]"
   echo "publish [text]       post text if given; then publish all texts"
   echo "wut                  read text snippets"
+  echo "fetch [user [...]]   fetch new text snippets"
   return 0
 }
 
 wut() {
   git log --pretty="%Cblue%an%Creset, %C(white)%ar%Creset%n%w(50,1,1)%B"
   return $?
+}
+
+fetch() {
+  local users="$@"
+  [ -z "$users" ] && git fetch --quiet --all
+  for user in $users; do
+    git fetch --quiet "$user"
+  done
 }
 
 setup_repository() {
