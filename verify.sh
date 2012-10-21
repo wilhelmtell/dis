@@ -27,7 +27,7 @@ verify_help_command() {
   return $?
 }
 
-verify_sup_command() {
+verify_wut_command() {
   local extra_argument="$2"
   if [ -n "$2" ]; then
     error "unrecognized extra argument"
@@ -62,8 +62,8 @@ verify_command() {
     verify_post_command "$@"
   elif [ $cmd = "help" ]; then
     verify_help_command "$@"
-  elif [ $cmd = "sup" ]; then
-    verify_sup_command "$@"
+  elif [ $cmd = "wut" ]; then
+    verify_wut_command "$@"
   elif [ $cmd = "init" ]; then
     verify_init_command "$@"
   elif [ $cmd = "publish" ]; then

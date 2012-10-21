@@ -13,11 +13,11 @@ help() {
   echo "init <name> [about]  initialize a dis account"
   echo "post <text>          post text"
   echo "publish [text]       publish posted texts"
-  echo "sup                  read text snippets"
+  echo "wut                  read text snippets"
   return 0
 }
 
-sup() {
+wut() {
   git log --pretty="%Cblue%an%Creset, %C(white)%ar%Creset%n%w(50,1,1)%B"
   return $?
 }
