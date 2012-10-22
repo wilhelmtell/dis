@@ -97,6 +97,14 @@ verify_about_command() {
   return $?
 }
 
+verify_hi_command() {
+  local biography="$2"
+  if [ -z "$biography" ]; then
+    error "biography text not given"
+  fi
+  return $?
+}
+
 verify_command() {
   local cmd="$1"
   if [ -z "$cmd" ]; then error "no command given"
@@ -108,6 +116,7 @@ verify_command() {
   elif [ $cmd = "track" ]; then verify_track_command "$@"
   elif [ $cmd = "about" ]; then verify_about_command "$@"
   elif [ $cmd = "publish" ]; then verify_publish_command "$@"
+  elif [ $cmd = "hi" ]; then verify_hi_command "$@"
   else error "unrecognized command, \"$cmd\""
   fi
   return $?

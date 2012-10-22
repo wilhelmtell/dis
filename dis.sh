@@ -21,7 +21,17 @@ help() {
   echo "fetch [user [...]]   fetch new text snippets"
   echo "track <user> <at>    track a user"
   echo "about <user>         show biography of a user"
+  echo "hi <text>            show biography of a user"
   return 0
+}
+
+hi() {
+  local biography="$1"
+  local name="$(git config user.name)"
+  echo -n "$biography" >ABOUT &&
+    git add ABOUT &&
+    git commit --quiet --message "$name updated the biography text."
+  return $?
 }
 
 about() {
