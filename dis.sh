@@ -21,7 +21,7 @@ help() {
   echo "fetch [user [...]]   fetch new text snippets"
   echo "track <user> <at>    track a user"
   echo "about <user>         show biography of a user"
-  echo "hi <text>            show biography of a user"
+  echo "hi <text>            change biography text"
   return 0
 }
 
