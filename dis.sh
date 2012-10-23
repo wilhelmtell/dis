@@ -73,6 +73,7 @@ setup_repository() {
 
 setup_commit_handler() {
   local name="$1"
+  cp .git/hooks/commit-msg{.sample,}
   cat <<EOF>.git/hooks/commit-msg
 length=\$((\$(sed '/^#/ d' <"\$1" |wc -c) - 1))
 [ \$length -le 140 ] || {
@@ -80,7 +81,6 @@ length=\$((\$(sed '/^#/ d' <"\$1" |wc -c) - 1))
   exit 1
 }
 EOF
-  chmod 755 .git/hooks/commit-msg
   return $?
 }
 
