@@ -105,6 +105,14 @@ verify_hi_command() {
   return $?
 }
 
+verify_lobby_command() {
+  local host="$2"
+  if [ -z "$host" ]; then
+    error "no host specified"
+  fi
+  return $?
+}
+
 verify_command() {
   local cmd="$1"
   if [ -z "$cmd" ]; then error "no command given"
@@ -116,6 +124,7 @@ verify_command() {
   elif [ $cmd = "track" ]; then verify_track_command "$@"
   elif [ $cmd = "about" ]; then verify_about_command "$@"
   elif [ $cmd = "publish" ]; then verify_publish_command "$@"
+  elif [ $cmd = "lobby" ]; then verify_lobby_command "$@"
   elif [ $cmd = "hi" ]; then verify_hi_command "$@"
   else error "unrecognized command, \"$cmd\""
   fi

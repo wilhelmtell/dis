@@ -17,12 +17,19 @@ help() {
   echo "init <name> [about]  initialize a dis account"
   echo "post [text]"
   echo "publish [text]       post text if given; then publish all texts"
+  echo "lobby <host>         set publish host"
   echo "wut                  read text snippets"
   echo "fetch [user [...]]   fetch new text snippets"
-  echo "track <user> <at>    track a user"
+  echo "track <user> <host>  track a user"
   echo "about <user>         show biography of a user"
   echo "hi <text>            change biography text"
   return 0
+}
+
+lobby() {
+  local host="$1"
+  git remote add lobby "$host" 2>/dev/null ||
+    git remote set-url lobby "$host"
 }
 
 hi() {
