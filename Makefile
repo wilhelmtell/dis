@@ -10,6 +10,5 @@ install:
 	install -D -c $(SRC) $(prefix)/bin
 uninstall:
 	rm $(foreach s,$(SRC),$(prefix)/bin/$s)
-	rmdir -p $(prefix)/bin
 dist:
 	git archive --prefix=dis/ master |xz -9 >dis.tar.xz
