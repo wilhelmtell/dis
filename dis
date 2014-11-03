@@ -1,9 +1,0 @@
-#!/bin/bash
-export SCRIPT_DIRECTORY="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-source $SCRIPT_DIRECTORY/verify.sh
-source $SCRIPT_DIRECTORY/dis.sh
-
-verify "$@" || exit 1
-command=$1
-shift
-$command "$@"

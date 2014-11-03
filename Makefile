@@ -1,14 +1,18 @@
+prefix ?= /usr/local
+
 .PHONY: all clean distclean install uninstall dist
 
-SRC := dis dis.sh error.sh verify.sh
-
 all:
+	${MAKE} --directory lib all
+	${MAKE} --directory bin all
 clean:
 	@echo nothing to clean
 distclean: clean
 install:
-	install -D -c $(SRC) $(prefix)/bin
+	${MAKE} --directory lib install
+	${MAKE} --directory bin install
 uninstall:
-	rm $(foreach s,$(SRC),$(prefix)/bin/$s)
+	${MAKE} --directory bin uninstall
+	${MAKE} --directory lib uninstall
 dist:
 	git archive --prefix=dis/ master |xz -9 >dis.tar.xz

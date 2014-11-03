@@ -1,0 +1,9 @@
+#!/bin/bash
+export PREFIX="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+source $PREFIX/lib/verify.sh
+source $PREFIX/lib/dis.sh
+
+verify "$@" || exit 1
+command=$1
+shift
+$command "$@"
