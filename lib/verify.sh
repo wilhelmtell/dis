@@ -86,9 +86,7 @@ verify_track_command() {
 
 verify_about_command() {
   local user="$2"
-  if [ -z "$user" ]; then
-    error "no user given to show biography for"
-  else
+  if [ -n "$user" ]; then
     git remote |grep "^$user$" >/dev/null || {
       error "unknown user $user. did you forget to track it first?"
       return 1
