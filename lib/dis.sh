@@ -41,21 +41,9 @@ hi() {
   return $?
 }
 
-about_local() {
-  git --no-pager show master:ABOUT
-}
-
-about_remote() {
-  local user="$1"
-  git --no-pager show "$user"/master:ABOUT
-}
-
 about() {
-  if [ -z "$1" ]; then
-    about_local
-  else
-    about_remote "$@"
-  fi
+  local user="$1"
+  git --no-pager show "${user:+$user/}"master:ABOUT
 }
 
 track() {
